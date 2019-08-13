@@ -248,8 +248,10 @@ class DbBackup(models.Model):
                 )
 
                 if rec.method == "local":
-                    for name in iglob(os.path.join(rec.folder,
-                                                   rec.backup_format)):
+                    filename_pattern = os.path.join(
+                        rec.folder, "*.{}".format(rec.backup_format)
+                    )
+                    for name in iglob(filename_pattern):
                         if os.path.basename(name) < oldest:
                             os.unlink(name)
 
