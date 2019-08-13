@@ -248,20 +248,17 @@ class DbBackup(models.Model):
                 )
 
                 if rec.method == "local":
-                    for name in iglob(
-                        os.path.join(rec.folder, "*.%s" % file_extension)
-                    ):
+                    for name in iglob(os.path.join(rec.folder,
+                                                   rec.backup_format)):
                         if os.path.basename(name) < oldest:
                             os.unlink(name)
 
                 elif rec.method == "sftp":
                     with rec.sftp_connection() as remote:
                         for name in remote.listdir(rec.folder):
-                            if (
-                                name.endswith(".%s" % file_extension)
-                                and os.path.basename(name) < oldest
-                            ):
-                                remote.unlink("{}/{}".format(rec.folder, name))
+                            if (name.endswith(rec.backup_format) and
+                                    os.path.basename(name) < oldest):
+                                remote.unlink('%s/%s' % (rec.folder, name))
 
     @contextmanager
     def cleanup_log(self):
