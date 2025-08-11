@@ -25,7 +25,7 @@
             </tree>
         </field>
     </record>
-    <record id="custom_info_value_editable" model="ir.ui.view">
+    <!-- <record id="custom_info_value_editable" model="ir.ui.view">
         <field name="model">custom.info.value</field>
         <field name="arch" type="xml">
             <custom_info>
@@ -45,7 +45,7 @@
                 <field name="value_id" />
             </custom_info>
         </field>
-    </record>
+    </record> -->
     <record id="custom_info_value_tree_editable" model="ir.ui.view">
         <field name="model">custom.info.value</field>
         <field name="priority" eval="999" />

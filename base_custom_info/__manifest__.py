@@ -21,13 +21,13 @@
         "views/res_partner_view.xml",
         "wizard/res_config_settings_view.xml",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "base_custom_info/static/src/xml/**/*",
-            "base_custom_info/static/src/components/**/*",
-            "base_custom_info/static/src/scss/**/*",
-        ],
-    },
+    # "assets": {
+    #     "web.assets_backend": [
+    #         "base_custom_info/static/src/xml/**/*",
+    #         "base_custom_info/static/src/components/**/*",
+    #         "base_custom_info/static/src/scss/**/*",
+    #     ],
+    # },
     "demo": [
         "demo/custom.info.category.csv",
         "demo/custom.info.template.csv",
