@@ -48,6 +48,12 @@ class Base(models.AbstractModel):
         )
         for field_name, owner_field_name in self._tm_get_fields_to_notify():
             owner = self[field_name]
+
+            # Robustness fix: Handle polymorphic fields (like res_id on mail.message)
+            # which return an integer instead of a BaseModel Recordset.
+            if not isinstance(owner, models.BaseModel) or not owner:
+                continue
+
             data[owner._name][owner.id][owner_field_name].append(
                 {
                     "mode": mode,
