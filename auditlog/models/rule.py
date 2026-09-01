@@ -509,7 +509,10 @@ class AuditlogRule(models.Model):
         http_session_model = self.env["auditlog.http.session"]
         model_model = self.env[res_model]
         model_id = self.pool._auditlog_model_cache[res_model]
-        auditlog_rule = self.env["auditlog.rule"].search([("model_id", "=", model_id)])
+        auditlog_rule = self.env["auditlog.rule"].search([
+            ("model_id", "=", model_id),
+            ("state", "=", "subscribed"),
+        ])
         fields_to_exclude = auditlog_rule.fields_to_exclude_ids.mapped("name")
         for res_id in res_ids:
             name = model_model.browse(res_id).name_get()
